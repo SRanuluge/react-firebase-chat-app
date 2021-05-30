@@ -5,16 +5,18 @@ admin.initializeApp();
 const db = admin.firestore();
 exports.detectEvilUsers = functions.firestore
   .document("messages/{msgId}")
-  .onCreate();
+  .onCreate(async (doc, ctx) =>{
 
-  const filter = new Filter();
-  const {text, uid} = doc.data()
+      const filter = new Filter();
+      const {text, uid} = doc.data()
+    
+       if  (filter.isProfane(text)){
+          const cleaned = filter.clean(text);
+          await doc.ref.update({text: `I got Banned for life for saying...${cleaned}`})
+          await db.collection('banned').doc(uid).set({})
+      }
+  });
 
-  if(filter.isProfane(text)){
-      const cleaned = filter.clean(text);
-      await doc.ref.update({text: `I got Banned for life for saying...${cleaned}`})
-      await db.collection('banned').doc(uid).set({})
-  }
 
 // // Create and Deploy Your First Cloud Functions
 // // https://firebase.google.com/docs/functions/write-firebase-functions
