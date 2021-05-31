@@ -9,7 +9,6 @@ import ChatRoom from "./components/ChatRoom";
 import { Container, makeStyles, AppBar, Toolbar } from "@material-ui/core";
 import { useAuthState } from "react-firebase-hooks/auth";
 
-if (!firebase.apps.length) {
   firebase.initializeApp({
     apiKey: "AIzaSyCg61E307_BPBImEuUF2wch2sodt7U8ISU",
     authDomain: "superchatapp-52c44.firebaseapp.com",
@@ -19,10 +18,7 @@ if (!firebase.apps.length) {
     appId: "1:124997746417:web:5751c0b40e52161d5b3350",
     measurementId: "G-QYTPBZN959",
   });
-} else {
-  firebase.app(); // if already initialized, use that one
-}
-
+  
 const auth = firebase.auth();
 
 const App = () => {
