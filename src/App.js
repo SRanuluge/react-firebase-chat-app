@@ -8,6 +8,9 @@ import SignIn from "./components/SignIn";
 import ChatRoom from "./components/ChatRoom";
 import { Container, makeStyles, AppBar, Toolbar } from "@material-ui/core";
 import { useAuthState } from "react-firebase-hooks/auth";
+require('/__/firebase/8.6.3/firebase-app.js')
+require('/__/firebase/8.6.3/firebase-analytics.js')
+require('/__/firebase/init.js')
 
   firebase.initializeApp({
     apiKey: "AIzaSyCg61E307_BPBImEuUF2wch2sodt7U8ISU",
@@ -18,7 +21,7 @@ import { useAuthState } from "react-firebase-hooks/auth";
     appId: "1:124997746417:web:5751c0b40e52161d5b3350",
     measurementId: "G-QYTPBZN959",
   });
-  
+
 const auth = firebase.auth();
 
 const App = () => {
